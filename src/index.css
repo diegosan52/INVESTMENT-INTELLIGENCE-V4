@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #059467;
+  --color-background-dark: #0f231d;
+  --color-surface: #152a24;
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+
+  --font-display: "Inter", "sans-serif";
+
+  --radius-default: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* Base Styles - Force Dark Theme by default */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f231d;
+  color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Glassmorphism for Dark Theme */
+.glass {
+  background: rgba(15, 35, 29, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(21, 42, 36, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #152a24 25%, #1e3a31 50%, #152a24 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.bento-card {
+  @apply bg-[#152a24]/50 border border-white/10 shadow-lg transition-all hover:shadow-primary/5 hover:border-primary/30;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f231d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3a31;
+  border-radius: 10px;
+  border: 2px solid #0f231d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059467;
+}

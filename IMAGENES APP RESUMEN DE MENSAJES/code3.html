@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WA-Summarizer Pro: Analysis Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#059467",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#0f231d",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-card {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .dark .bento-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">arrow_back</span>
+<div>
+<h2 class="text-sm font-semibold leading-tight">Project Alpha Team</h2>
+<p class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Análisis de Chat</p>
+</div>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+<p class="text-primary text-xs font-bold leading-none">1.2k msgs</p>
+</div>
+</div>
+</header>
+<main class="p-4 space-y-4 max-w-md mx-auto">
+<!-- Headline Section -->
+<section>
+<h1 class="text-2xl font-bold tracking-tight pt-2">Resultados del Análisis</h1>
+<p class="text-sm text-slate-500 mt-1">Sincronizado hoy a las 10:42 AM</p>
+</section>
+<!-- Executive Summary Card (Main Width) -->
+<div class="bento-card bg-white dark:bg-slate-900 p-5 rounded-xl flex flex-col gap-3">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+<span class="text-[10px] font-bold tracking-widest uppercase">Resumen Ejecutivo</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                El equipo discutió el próximo lanzamiento del cuarto trimestre, identificó bloqueos en la integración de la API y programó un seguimiento para el martes. Se acordó priorizar la estabilidad del backend sobre las nuevas funciones de UI.
+            </p>
+<div class="h-[120px] w-full bg-slate-50 dark:bg-slate-800 rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" data-alt="Abstract gradient showing data visualization patterns"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="space-y-1">
+<div class="h-2 w-24 bg-primary/40 rounded"></div>
+<div class="h-2 w-16 bg-primary/20 rounded"></div>
+</div>
+<span class="material-symbols-outlined text-primary/40">insights</span>
+</div>
+</div>
+</div>
+<!-- Two Column Layout for Bento items -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Topics Card -->
+<div class="bento-card bg-white dark:bg-slate-900 p-4 rounded-xl col-span-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Temas Principales</h3>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[16px]">settings</span>
+<span class="text-xs font-medium">Integración</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+<span class="text-xs font-medium">Lanzamiento</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="text-xs font-medium">Roadmap</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[16px]">bug_report</span>
+<span class="text-xs font-medium">Bugs</span>
+</div>
+</div>
+</div>
+<!-- Action Items Card -->
+<div class="bento-card bg-white dark:bg-slate-900 p-4 rounded-xl col-span-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Tareas Pendientes</h3>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<div class="mt-0.5 h-5 w-5 rounded border border-primary flex items-center justify-center bg-primary text-white">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 line-through decoration-slate-400">Enviar docs API a Sarah</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="mt-0.5 h-5 w-5 rounded border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center"></div>
+<p class="text-sm text-slate-800 dark:text-slate-200">Revisar PR #402</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="mt-0.5 h-5 w-5 rounded border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center"></div>
+<p class="text-sm text-slate-800 dark:text-slate-200">Actualizar Roadmap</p>
+</div>
+</div>
+</div>
+<!-- Participation Chart Card -->
+<div class="bento-card bg-white dark:bg-slate-900 p-4 rounded-xl col-span-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Participación</h3>
+<div class="space-y-4">
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-semibold text-slate-500">
+<span>Carlos Ruiz</span>
+<span>42%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[42%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-semibold text-slate-500">
+<span>Elena Gomez</span>
+<span>35%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary/70 rounded-full w-[35%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-semibold text-slate-500">
+<span>Marco Polo</span>
+<span>23%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary/40 rounded-full w-[23%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Segmented Control for Tone -->
+<div class="bento-card bg-white dark:bg-slate-900 p-4 rounded-xl col-span-2">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Tono del Resumen</h3>
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="flex-1 text-xs py-2 font-medium text-slate-500">Conciso</button>
+<button class="flex-1 text-xs py-2 font-semibold bg-white dark:bg-slate-700 text-primary rounded-md shadow-sm">Ejecutivo</button>
+<button class="flex-1 text-xs py-2 font-medium text-slate-500">Creativo</button>
+</div>
+</div>
+</div>
+<!-- Actions Sidebar (Docked Bottom on Mobile) -->
+<div class="pt-6 pb-12 flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-emerald-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-lg">ios_share</span>
+                Exportar Informe
+            </button>
+<button class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-semibold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+                Limpiar Tablero
+            </button>
+</div>
+</main>
+<!-- Navigation Tab Bar (iOS style) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-8 py-3 pb-8 flex justify-between items-center z-20">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-[10px] font-medium">Dashboard</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">history</span>
+<span class="text-[10px] font-medium">Historial</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-medium">Ajustes</span>
+</div>
+</nav>
+</body></html>

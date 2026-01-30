@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#059467",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<!-- Header / TopAppBar -->
+<header class="sticky top-0 z-50 glass">
+<div class="flex items-center justify-between px-6 py-4 max-w-lg mx-auto">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[20px]">analytics</span>
+</div>
+<h1 class="text-[17px] font-bold tracking-tight">WA-Summarizer <span class="text-primary">Pro</span></h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-500">help_outline</span>
+</button>
+</div>
+</header>
+<main class="max-w-lg mx-auto px-6 py-8 flex flex-col min-h-[calc(100vh-140px)]">
+<!-- Welcome Message -->
+<div class="mb-8">
+<h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Nueva Análisis</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1 text-sm">Convierte tus chats en insights inteligentes.</p>
+</div>
+<!-- EmptyState / Upload Area -->
+<div class="flex flex-col mb-10">
+<div class="relative group flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 px-6 py-16 transition-all hover:border-primary/50 cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary text-[32px]">upload_file</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-semibold text-center tracking-tight">Sube el exporte .txt de tu chat</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-relaxed text-center max-w-[280px]">
+                        Arrastra tu archivo aquí o selecciona desde tu dispositivo. <br/>Solo archivos .txt de WhatsApp.
+                    </p>
+</div>
+<button class="mt-2 flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-6 bg-primary text-white text-sm font-semibold transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="truncate">Seleccionar Archivo</span>
+</button>
+</div>
+</div>
+<!-- SectionHeader & Stepper (Timeline) -->
+<div class="flex flex-col space-y-6 bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between">
+<h4 class="text-slate-900 dark:text-white text-xs font-bold uppercase tracking-widest">¿Cómo exportar tu chat?</h4>
+<span class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full uppercase font-bold tracking-tighter">iOS / Android</span>
+</div>
+<div class="flex flex-col">
+<!-- Step 1 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-2">
+<div class="flex flex-col items-center gap-1">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[18px]">share</span>
+</div>
+<div class="w-[1px] bg-slate-200 dark:bg-slate-800 h-8"></div>
+</div>
+<div class="flex flex-1 flex-col pb-6">
+<p class="text-slate-900 dark:text-white text-sm font-semibold">Exportar chat</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">En WhatsApp: Ajustes &gt; Más &gt; Exportar sin archivos</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-2">
+<div class="flex flex-col items-center gap-1">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 text-[18px]">description</span>
+</div>
+<div class="w-[1px] bg-slate-200 dark:bg-slate-800 h-8"></div>
+</div>
+<div class="flex flex-1 flex-col pb-6">
+<p class="text-slate-900 dark:text-white text-sm font-semibold">Seleccionar .txt</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Localiza el archivo generado en tu gestor de archivos</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="grid grid-cols-[40px_1fr] gap-x-2">
+<div class="flex flex-col items-center gap-1">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-semibold">Analizar con IA</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Obtén un resumen ejecutivo y análisis de sentimientos</p>
+</div>
+</div>
+</div>
+</div>
+<!-- MetaText / Privacy Footer -->
+<div class="mt-auto py-8 text-center">
+<div class="flex items-center justify-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<p class="text-xs font-medium leading-normal">Tus datos están encriptados de extremo a extremo.</p>
+</div>
+<p class="text-slate-400 dark:text-slate-500 text-[11px] mt-2 px-8">
+                El archivo se procesa de forma segura y se elimina permanentemente de nuestros servidores inmediatamente después de generar el resumen.
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 glass pb-6 pt-3 px-6 z-50">
+<div class="max-w-lg mx-auto flex items-center justify-between">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[24px]">add_circle</span>
+<span class="text-[10px] font-bold">NUEVO</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">history</span>
+<span class="text-[10px] font-medium">HISTORIAL</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-medium">AJUSTES</span>
+</div>
+</div>
+</nav>
+<!-- Spacer for Bottom Nav -->
+<div class="h-20 bg-transparent"></div>
+</body></html>
