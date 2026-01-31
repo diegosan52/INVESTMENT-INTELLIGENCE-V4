@@ -10,7 +10,7 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const prompt = `
       Actúa como un analista financiero senior experto en el mercado de valores de Colombia (BVC) e internacional.
