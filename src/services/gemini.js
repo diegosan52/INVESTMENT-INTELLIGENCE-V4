@@ -10,7 +10,17 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        // Intentamos con diferentes nombres de modelo
+        let model;
+        try {
+            model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        } catch {
+            try {
+                model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            } catch {
+                model = genAI.getGenerativeModel({ model: "models/gemini-1.5-flash-latest" });
+            }
+        }
 
         const prompt = `
       Actúa como un analista financiero senior experto en el mercado de valores de Colombia (BVC) e internacional.
@@ -34,26 +44,32 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
     `;
 
         const result = await model.generateContent(prompt);
-        const response = await result.response;
+        const response = result.response;
         return response.text();
     } catch (error) {
-        console.error("Gemini AI Error:", error);
+        console.error("Gemini AI Error completo:", error);
+        console.error("Mensaje:", error.message);
+        console.error("Stack:", error.stack);
 
         // Manejo específico de errores
         if (error.message === 'API_KEY_MISSING') {
             throw new Error('Por favor, ingresa una API Key válida.');
         }
 
-        if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('invalid')) {
+        if (error.message?.includes('API_KEY_INVALID') || error.message?.includes('invalid') || error.message?.includes('400')) {
             throw new Error('La API Key es inválida. Verifica que la copiaste correctamente desde Google AI Studio.');
         }
 
-        if (error.message?.includes('quota') || error.message?.includes('limit')) {
+        if (error.message?.includes('quota') || error.message?.includes('limit') || error.message?.includes('429')) {
             throw new Error('Has alcanzado el límite de consultas gratuitas (1,500/día). Intenta mañana o usa una API Key de pago.');
         }
 
         if (error.message?.includes('SAFETY') || error.message?.includes('blocked')) {
             throw new Error('El contenido fue bloqueado por filtros de seguridad. Intenta con otro chat.');
+        }
+
+        if (error.message?.includes('404') || error.message?.includes('not found')) {
+            throw new Error('Modelo de IA no disponible. Tu API Key podría no tener acceso a Gemini 1.5. Intenta crear una nueva API Key en https://aistudio.google.com/apikey');
         }
 
         // Error genérico con más detalles
