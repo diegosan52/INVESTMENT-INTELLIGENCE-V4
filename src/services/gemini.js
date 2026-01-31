@@ -10,15 +10,15 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        // Usando el nombre completo del modelo que debería funcionar
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+        // Usando gemini-1.0-pro que está disponible en todas las cuentas
+        const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
         const prompt = `
       Actúa como un analista financiero senior experto en el mercado de valores de Colombia (BVC) e internacional.
       Tu tarea es analizar un historial de chat de WhatsApp y generar un REPORTE ESTRATÉGICO ALPHA.
 
       CONTEXTO DEL CHAT:
-      ${chatContent.substring(0, 30000)}
+      ${chatContent.substring(0, 20000)}
 
       INSTRUCCIONES:
       1. Identifica los activos (acciones, ETFs, bonos) mencionados.
@@ -50,7 +50,7 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         if (error.message?.includes('quota') || error.message?.includes('limit') || error.message?.includes('429')) {
-            throw new Error('Has alcanzado el límite de consultas gratuitas (1,500/día). Intenta mañana o usa una API Key de pago.');
+            throw new Error('Has alcanzado el límite de consultas gratuitas. Intenta mañana o usa una API Key de pago.');
         }
 
         if (error.message?.includes('SAFETY') || error.message?.includes('blocked')) {
@@ -58,7 +58,7 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         if (error.message?.includes('404') || error.message?.includes('not found')) {
-            throw new Error('⚠️ Tu API Key no tiene acceso a Gemini 1.5. Solución: Ve a https://aistudio.google.com/apikey → Elimina la clave actual → Crea una NUEVA clave → Úsala aquí.');
+            throw new Error('Modelo no disponible. Verifica tu API Key en https://aistudio.google.com/apikey');
         }
 
         // Error genérico con más detalles
