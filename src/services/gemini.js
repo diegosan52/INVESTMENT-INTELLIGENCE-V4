@@ -10,15 +10,15 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        // Usando gemini-1.0-pro que está disponible en todas las cuentas
-        const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
+        // Usando gemini-2.5-flash - el modelo más rápido y eficiente de Gemini 2.5
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `
       Actúa como un analista financiero senior experto en el mercado de valores de Colombia (BVC) e internacional.
       Tu tarea es analizar un historial de chat de WhatsApp y generar un REPORTE ESTRATÉGICO ALPHA.
 
       CONTEXTO DEL CHAT:
-      ${chatContent.substring(0, 20000)}
+      ${chatContent.substring(0, 50000)}
 
       INSTRUCCIONES:
       1. Identifica los activos (acciones, ETFs, bonos) mencionados.
