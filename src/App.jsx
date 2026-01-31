@@ -353,6 +353,22 @@ const Dashboard = ({ allMessages, initialData, tone, setTone, onReset }) => {
               </motion.div>
             )}
 
+            {apiKey && !showApiKeyInput && !isAiLoading && (
+              <div className="flex justify-end">
+                <button
+                  onClick={() => {
+                    localStorage.removeItem('gemini_api_key');
+                    setApiKey('');
+                    setShowApiKeyInput(true);
+                    setAiReport(null);
+                  }}
+                  className="text-white/30 hover:text-white/60 text-[9px] font-bold uppercase tracking-widest transition-colors"
+                >
+                  🔑 Cambiar API Key
+                </button>
+              </div>
+            )}
+
             {isAiLoading && (
               <div className="bento-card p-14 rounded-[4rem] flex flex-col items-center justify-center space-y-6 bg-white/[0.02] border-primary/10">
                 <Loader2 className="w-12 h-12 text-primary animate-spin" />
