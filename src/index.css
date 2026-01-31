@@ -21,6 +21,12 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #0f231d;
+  background-image: 
+    linear-gradient(rgba(15, 35, 29, 0.45), rgba(15, 35, 29, 0.45)),
+    url('./assets/stock_chart_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #f1f5f9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,17 +36,18 @@ body {
 
 /* Glassmorphism for Dark Theme */
 .glass {
-  background: rgba(15, 35, 29, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(15, 35, 29, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-card {
-  background: rgba(21, 42, 36, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .skeleton-shimmer {

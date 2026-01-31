@@ -94,10 +94,10 @@ const UploadScreen = ({ onUpload }) => {
           <div className="space-y-6">
             <div className="inline-flex px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black tracking-[3px] uppercase">INVESTMENT INTELLIGENCE V4</div>
             <h2 className="text-6xl md:text-7xl font-black tracking-tighter text-white leading-tight">
-              BVC <br /><span className="text-primary">Intelligence</span>
+              Análisis <br /><span className="text-primary">WhatsApp</span>
             </h2>
             <p className="text-white/40 text-xl font-medium max-w-lg leading-relaxed">
-              Análisis avanzado de conversaciones financieras para dominar el mercado de valores de Colombia y el mundo.
+              Exporta tu chat, cárgalo aquí y obtén una radiografía completa de tus finanzas e inversiones.
             </p>
           </div>
 
@@ -110,8 +110,8 @@ const UploadScreen = ({ onUpload }) => {
               <span className="material-symbols-outlined text-primary text-[48px]">account_balance_wallet</span>
             </div>
             <div className="text-center space-y-2">
-              <h3 className="text-white text-2xl font-bold">Carga tu histórico financiero</h3>
-              <p className="text-white/40 text-sm">Sube el .txt de la BVC para iniciar</p>
+              <h3 className="text-white text-2xl font-bold">Carga tu histórico de WhatsApp</h3>
+              <p className="text-white/40 text-sm">Sube el .txt para iniciar el análisis</p>
             </div>
             <button className="flex min-w-[240px] items-center justify-center rounded-2xl h-16 bg-primary text-white font-black uppercase tracking-widest text-xs transition-all hover:bg-emerald-600 shadow-xl shadow-primary/30 text-center">
               EXPLORAR DISPOSITIVO
@@ -120,21 +120,33 @@ const UploadScreen = ({ onUpload }) => {
         </div>
 
         <div className="flex flex-col space-y-8">
-          <div className="glass-card p-12 rounded-[4rem] border-white/5 shadow-2xl space-y-10">
-            <h4 className="text-[11px] font-black text-primary uppercase tracking-[5px]">PODER DE ANÁLISIS</h4>
-            <div className="space-y-10">
+          <div className="glass-card p-10 rounded-[3rem] border-white/5 shadow-2xl space-y-8">
+            <h4 className="text-[11px] font-black text-primary uppercase tracking-[5px]">¿CÓMO EXPORTAR TU CHAT?</h4>
+            <div className="space-y-6">
               {[
-                { icon: 'insights', title: 'Visión de Emisores', desc: 'Detección automática de empresas y activos mencionados' },
-                { icon: 'monitoring', title: 'Análisis de Riesgo', desc: 'Identificación de varianza y volatilidad analizada' },
-                { icon: 'account_tree', title: 'Portafolio Pro', desc: 'Estructuración de KPIs financieros del grupo', last: true }
+                {
+                  icon: 'smartphone',
+                  title: 'En Android',
+                  desc: 'Abre el chat > ⋮ > Más > Exportar chat > Sin archivos.'
+                },
+                {
+                  icon: 'apple',
+                  title: 'En iPhone',
+                  desc: 'Abre el chat > Tap nombre > Exportar chat > Sin archivos.'
+                },
+                {
+                  icon: 'upload_file',
+                  title: 'Carga el archivo',
+                  desc: 'Busca el archivo .txt generado y cárgalo en el recuadro de la izquierda.'
+                }
               ].map((step, i) => (
-                <div key={i} className="flex gap-8 items-start">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white/40 border border-white/5 flex-shrink-0 shadow-inner">
-                    <span className="material-symbols-outlined text-[24px]">{step.icon}</span>
+                <div key={i} className="flex gap-6 items-start">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-primary border border-white/5 flex-shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">{step.icon}</span>
                   </div>
                   <div className="flex flex-col pt-1">
-                    <p className="text-white text-xl font-bold leading-none mb-3">{step.title}</p>
-                    <p className="text-white/30 text-sm leading-relaxed max-w-[280px]">{step.desc}</p>
+                    <p className="text-white text-lg font-bold leading-none mb-2">{step.title}</p>
+                    <p className="text-white/40 text-xs leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
