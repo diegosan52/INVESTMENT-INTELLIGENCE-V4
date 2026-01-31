@@ -10,17 +10,8 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        // Intentamos con diferentes nombres de modelo
-        let model;
-        try {
-            model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        } catch {
-            try {
-                model = genAI.getGenerativeModel({ model: "gemini-pro" });
-            } catch {
-                model = genAI.getGenerativeModel({ model: "models/gemini-1.5-flash-latest" });
-            }
-        }
+        // Usando el nombre completo del modelo que debería funcionar
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
         const prompt = `
       Actúa como un analista financiero senior experto en el mercado de valores de Colombia (BVC) e internacional.
@@ -48,8 +39,6 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         return response.text();
     } catch (error) {
         console.error("Gemini AI Error completo:", error);
-        console.error("Mensaje:", error.message);
-        console.error("Stack:", error.stack);
 
         // Manejo específico de errores
         if (error.message === 'API_KEY_MISSING') {
@@ -69,7 +58,7 @@ export const analyzeChatWithGemini = async (apiKey, chatContent, tone = 'Ejecuti
         }
 
         if (error.message?.includes('404') || error.message?.includes('not found')) {
-            throw new Error('Modelo de IA no disponible. Tu API Key podría no tener acceso a Gemini 1.5. Intenta crear una nueva API Key en https://aistudio.google.com/apikey');
+            throw new Error('⚠️ Tu API Key no tiene acceso a Gemini 1.5. Solución: Ve a https://aistudio.google.com/apikey → Elimina la clave actual → Crea una NUEVA clave → Úsala aquí.');
         }
 
         // Error genérico con más detalles
