@@ -130,7 +130,7 @@ const UploadScreen = ({ onUpload }) => {
                   desc: 'Abre el chat > ⋮ > Más > Exportar chat > Sin archivos.'
                 },
                 {
-                  icon: 'apple',
+                  icon: 'phone_iphone',
                   title: 'En iPhone',
                   desc: 'Abre el chat > Tap nombre > Exportar chat > Sin archivos.'
                 },
