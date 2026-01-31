@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { parseWhatsAppChat, analyzeChat, generateDetailedFinancialSummary } from './utils/parser';
-import financeGrowth from './assets/finance_growth.png';
+
 
 // --- Shared Components ---
 
@@ -154,7 +154,7 @@ const UploadScreen = ({ onUpload }) => {
                   </div>
                 ))}
               </div>
-              <img src={financeGrowth} alt="Crecimiento Financiero" className="absolute -bottom-10 -right-10 w-48 h-48 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none grayscale group-hover:grayscale-0 duration-500" />
+              <img src={`${import.meta.env.BASE_URL}assets/finance_growth.png`} alt="Crecimiento Financiero" className="absolute -bottom-10 -right-10 w-48 h-48 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none grayscale group-hover:grayscale-0 duration-500" />
             </div>
           </div>
           <div className="text-center pt-4 space-y-3">

@@ -23,7 +23,7 @@ body {
   background-color: #0f231d;
   background-image:
     linear-gradient(rgba(15, 35, 29, 0.45), rgba(15, 35, 29, 0.45)),
-    url('./assets/finance_city.png');
+    url('/INVESTMENT-INTELLIGENCE-V4/assets/finance_city.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

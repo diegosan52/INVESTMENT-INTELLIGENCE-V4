@@ -30,7 +30,10 @@ jobs:
           node-version: 20
           
       - name: Install dependencies
-        run: npm ci
+        run: npm install
+        
+      - name: Debug - List Files
+        run: find . -maxdepth 3 -not -path '*/.*'
         
       - name: Build
         run: npm run build
