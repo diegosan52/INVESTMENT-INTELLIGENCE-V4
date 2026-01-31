@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { parseWhatsAppChat, analyzeChat, generateDetailedFinancialSummary } from './utils/parser';
-import { analyzeChatWithGemini } from './services/gemini';
-import { Loader2, Sparkles, BrainCircuit, Terminal, AlertCircle } from 'lucide-react';
 
 
 // --- Shared Components ---
@@ -20,7 +18,7 @@ const Header = ({ title, subtitle, showBack, onBack }) => (
           <span className="material-symbols-outlined text-white text-[22px]">trending_up</span>
         </div>
         <h1 className="text-[18px] font-bold tracking-tight text-white">
-          {title} <span className="text-primary">{subtitle}</span>
+          {title}<span className="text-primary">{subtitle}</span>
         </h1>
       </div>
       <div className="flex items-center gap-6">
@@ -207,29 +205,6 @@ const ProcessingScreen = ({ fileName }) => {
 const Dashboard = ({ allMessages, initialData, tone, setTone, onReset }) => {
   const [dateFilter, setDateFilter] = useState({ start: initialData.dateRange.min, end: initialData.dateRange.max });
   const [modal, setModal] = useState({ open: false, title: '', messages: [] });
-  const [aiReport, setAiReport] = useState(null);
-  const [isAiLoading, setIsAiLoading] = useState(false);
-  const [showApiKeyInput, setShowApiKeyInput] = useState(false);
-  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || '');
-
-  const handleDeepAnalysis = async () => {
-    if (!apiKey) {
-      setShowApiKeyInput(true);
-      return;
-    }
-
-    setIsAiLoading(true);
-    try {
-      localStorage.setItem('gemini_api_key', apiKey);
-      const chatText = filteredMessages.map(m => `[${m.date} ${m.time}] ${m.sender}: ${m.content}`).join('\n');
-      const report = await analyzeChatWithGemini(apiKey, chatText, tone);
-      setAiReport(report);
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setIsAiLoading(false);
-    }
-  };
 
   const filteredMessages = useMemo(() => {
     return allMessages.filter(m => {
@@ -270,10 +245,10 @@ const Dashboard = ({ allMessages, initialData, tone, setTone, onReset }) => {
         <div className="lg:col-span-12 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 bg-primary text-white text-[10px] font-black tracking-[4px] uppercase rounded">BVC INSIGHTS</span>
+              <span className="px-3 py-1 bg-primary text-white text-[10px] font-black tracking-[4px] uppercase rounded">CHAT INSIGHTS</span>
               <span className="text-white/20 font-black text-[10px] uppercase tracking-[4px]">ALPHA VERSION</span>
             </div>
-            <h1 className="text-7xl font-black tracking-tighter text-white leading-none">Investment Terminal</h1>
+            <h1 className="text-7xl font-black tracking-tighter text-white leading-none">WA-Summarizer Pro</h1>
             <p className="text-white/30 uppercase tracking-[5px] text-xs font-bold pl-1">ARQUITECTURAS DE CRECIMIENTO: DMENTE DIGITAL</p>
           </div>
 
@@ -314,86 +289,6 @@ const Dashboard = ({ allMessages, initialData, tone, setTone, onReset }) => {
                 </p>
               ))}
             </div>
-          </div>
-
-          {/* Deep AI Analysis Section */}
-          <div className="space-y-8">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <BrainCircuit className="text-primary w-6 h-6" />
-                <h3 className="text-[12px] font-black text-white/50 uppercase tracking-[6px]">INTELIGENCIA ARTIFICIAL GENERATIVA</h3>
-              </div>
-              {!aiReport && !isAiLoading && (
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleDeepAnalysis}
-                  className="px-6 py-2 bg-primary/20 hover:bg-primary/30 border border-primary/30 rounded-xl text-primary text-[10px] font-black tracking-widest uppercase flex items-center gap-2 cursor-pointer transition-colors"
-                >
-                  <Sparkles size={14} />
-                  Análisis IA Profundo
-                </motion.button>
-              )}
-            </div>
-
-            {showApiKeyInput && !aiReport && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-8 rounded-[2.5rem] border-primary/20 bg-primary/5 space-y-4">
-                <p className="text-white/60 text-xs font-medium">Introduce tu Google AI API Key para proceder:</p>
-                <div className="flex gap-4">
-                  <input
-                    type="password"
-                    placeholder="API Key de Gemini..."
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    className="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-primary/50 outline-none"
-                  />
-                  <button onClick={handleDeepAnalysis} className="px-6 py-3 bg-primary text-white font-black text-[10px] uppercase rounded-xl hover:bg-emerald-600 transition-colors">CONFIGURAR</button>
-                </div>
-                <p className="text-[9px] text-white/30">Tu clave se guarda localmente en el navegador.</p>
-              </motion.div>
-            )}
-
-            {apiKey && !showApiKeyInput && !isAiLoading && (
-              <div className="flex justify-end">
-                <button
-                  onClick={() => {
-                    localStorage.removeItem('gemini_api_key');
-                    setApiKey('');
-                    setShowApiKeyInput(true);
-                    setAiReport(null);
-                  }}
-                  className="text-white/30 hover:text-white/60 text-[9px] font-bold uppercase tracking-widest transition-colors"
-                >
-                  🔑 Cambiar API Key
-                </button>
-              </div>
-            )}
-
-            {isAiLoading && (
-              <div className="bento-card p-14 rounded-[4rem] flex flex-col items-center justify-center space-y-6 bg-white/[0.02] border-primary/10">
-                <Loader2 className="w-12 h-12 text-primary animate-spin" />
-                <p className="text-primary text-sm font-black tracking-[4px] uppercase animate-pulse">Sintonizando Redes Neuronales...</p>
-              </div>
-            )}
-
-            {aiReport && (
-              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bento-card p-14 rounded-[4rem] bg-black/40 border border-primary/20 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-10">
-                  <Terminal size={120} className="text-primary" />
-                </div>
-                <div className="flex justify-between items-start mb-10">
-                  <span className="px-4 py-1.5 bg-primary/20 text-primary text-[10px] font-black tracking-[4px] uppercase rounded-lg border border-primary/30">AI TERMINAL REPORT</span>
-                  <button onClick={() => setAiReport(null)} className="text-white/20 hover:text-white/60 transition-colors">
-                    <AlertCircle size={20} />
-                  </button>
-                </div>
-                <div className="prose prose-invert max-w-none">
-                  <div className="text-white/90 text-lg md:text-xl font-medium leading-relaxed whitespace-pre-wrap font-mono">
-                    {aiReport}
-                  </div>
-                </div>
-              </motion.div>
-            )}
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -536,7 +431,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#0f231d] text-white selection:bg-primary/30">
-      <Header title="BVC" subtitle="Intelligence Pro" showBack={screen === 'dashboard'} onBack={() => { setScreen('upload'); setAllMessages([]); setInitialAnalysis(null); }} />
+      <Header title="WA-Summarizer " subtitle="Pro" showBack={screen === 'dashboard'} onBack={() => { setScreen('upload'); setAllMessages([]); setInitialAnalysis(null); }} />
       <AnimatePresence mode="wait">
         {screen === 'upload' && <UploadScreen key="u" onUpload={handleUpload} />}
         {screen === 'processing' && <ProcessingScreen key="p" fileName={file?.name || 'Archivo'} />}
