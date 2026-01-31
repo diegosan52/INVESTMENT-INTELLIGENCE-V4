@@ -21,9 +21,9 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #0f231d;
-  background-image: 
+  background-image:
     linear-gradient(rgba(15, 35, 29, 0.45), rgba(15, 35, 29, 0.45)),
-    url('./assets/stock_chart_bg.png');
+    url('./assets/finance_city.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

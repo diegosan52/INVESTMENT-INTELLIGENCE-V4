@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { parseWhatsAppChat, analyzeChat, generateDetailedFinancialSummary } from './utils/parser';
+import financeGrowth from './assets/finance_growth.png';
 
 // --- Shared Components ---
 
@@ -120,36 +121,40 @@ const UploadScreen = ({ onUpload }) => {
         </div>
 
         <div className="flex flex-col space-y-8">
-          <div className="glass-card p-10 rounded-[3rem] border-white/5 shadow-2xl space-y-8">
-            <h4 className="text-[11px] font-black text-primary uppercase tracking-[5px]">¿CÓMO EXPORTAR TU CHAT?</h4>
-            <div className="space-y-6">
-              {[
-                {
-                  icon: 'smartphone',
-                  title: 'En Android',
-                  desc: 'Abre el chat > ⋮ > Más > Exportar chat > Sin archivos.'
-                },
-                {
-                  icon: 'phone_iphone',
-                  title: 'En iPhone',
-                  desc: 'Abre el chat > Tap nombre > Exportar chat > Sin archivos.'
-                },
-                {
-                  icon: 'upload_file',
-                  title: 'Carga el archivo',
-                  desc: 'Busca el archivo .txt generado y cárgalo en el recuadro de la izquierda.'
-                }
-              ].map((step, i) => (
-                <div key={i} className="flex gap-6 items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-primary border border-white/5 flex-shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">{step.icon}</span>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-emerald-500/20 rounded-[3rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative glass-card p-10 rounded-[3rem] border-white/5 shadow-2xl space-y-8 overflow-hidden">
+              <h4 className="text-[11px] font-black text-primary uppercase tracking-[5px] relative z-10">¿CÓMO EXPORTAR TU CHAT?</h4>
+              <div className="space-y-6 relative z-10">
+                {[
+                  {
+                    icon: 'smartphone',
+                    title: 'En Android',
+                    desc: 'Abre el chat > ⋮ > Más > Exportar chat > Sin archivos.'
+                  },
+                  {
+                    icon: 'phone_iphone',
+                    title: 'En iPhone',
+                    desc: 'Abre el chat > Tap nombre > Exportar chat > Sin archivos.'
+                  },
+                  {
+                    icon: 'upload_file',
+                    title: 'Carga el archivo',
+                    desc: 'Busca el archivo .txt generado y cárgalo en el recuadro de la izquierda.'
+                  }
+                ].map((step, i) => (
+                  <div key={i} className="flex gap-6 items-start">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-primary border border-white/5 flex-shrink-0">
+                      <span className="material-symbols-outlined text-[20px]">{step.icon}</span>
+                    </div>
+                    <div className="flex flex-col pt-1">
+                      <p className="text-white text-lg font-bold leading-none mb-2">{step.title}</p>
+                      <p className="text-white/40 text-xs leading-relaxed">{step.desc}</p>
+                    </div>
                   </div>
-                  <div className="flex flex-col pt-1">
-                    <p className="text-white text-lg font-bold leading-none mb-2">{step.title}</p>
-                    <p className="text-white/40 text-xs leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <img src={financeGrowth} alt="Crecimiento Financiero" className="absolute -bottom-10 -right-10 w-48 h-48 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none grayscale group-hover:grayscale-0 duration-500" />
             </div>
           </div>
           <div className="text-center pt-4 space-y-3">
